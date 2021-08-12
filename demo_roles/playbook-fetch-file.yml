@@ -1,0 +1,7 @@
+
+- name: 'fetch file'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - 'download_file'
+

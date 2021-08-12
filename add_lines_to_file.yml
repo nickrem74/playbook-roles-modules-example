@@ -1,0 +1,12 @@
+- hosts: ansible2
+  become: true
+  tasks:
+    - name: 'add line'
+      lineinfile:
+        path: '/home/ansible/test.txt'
+        line: '{{ item }}'
+      with_items:
+        - ''
+        - alias ls='ls --color=auto'
+        - alias ll='ls -ltr --color=auto'
+        - alias la='ls -la --color=auto'

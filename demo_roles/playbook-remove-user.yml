@@ -1,0 +1,8 @@
+ 
+- name: 'remove user on hosts'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - role: 'remove_user'
+      when: exec_role == 'remove_user'
+

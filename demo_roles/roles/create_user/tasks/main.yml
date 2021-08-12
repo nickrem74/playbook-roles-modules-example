@@ -1,0 +1,53 @@
+---
+
+- name: 'create group testuser'
+  group:
+    name: 'testuser'
+    state: present
+    gid: 746
+
+- name: 'create user testuser'
+  user:
+    name: 'testuser'
+    state: present
+    comment: 'testuser user'
+    uid: 746
+    group: testuser
+    system: yes
+    create_home: yes
+    shell: '/bin/bash'
+    password: '$1$vvyTkqUW$5UpyGjEd9zOu7xOaW7oXb1'
+    update_password: always
+
+- name: '.ssh dir for testuser'
+  file:
+    path: '/home/testuser/.ssh'
+    state: directory
+    recurse: yes
+    owner: testuser
+    group: testuser
+    mode: 0700
+
+- name: 'get file testuser key'
+  get_url:
+    url: 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
+    #url: 'http://fedora.local:3000/nicolas/vagrant-key/raw/branch/master/vagrant.pub'
+    dest: '/home/testuser/.ssh/authorized_keys'
+    owner: testuser
+    group: testuser
+    mode: 0600
+    validate_certs: no
+
+- name: 'set sudoers testuser file'
+  lineinfile:
+    path: '/etc/sudoers.d/testuser'
+    line: 'testuser ALL=(ALL) NOPASSWD:ALL'
+    create: yes
+
+- name: 'change sudoers file perm/rights'
+  file:
+    path: '/etc/sudoers.d/testuser'
+    owner: root
+    group: root
+    mode: 0440
+

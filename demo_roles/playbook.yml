@@ -1,0 +1,60 @@
+- name: 'local installation of ssh key'
+  hosts: '{{ machine }}'
+  roles:
+    - role: 'ssh_keygen'
+      when: exec_role == 'ssh_keygen'
+
+- name: 'create user on hosts'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - role: 'create_user'
+      when: exec_role == 'create_user'
+ 
+- name: 'remove user on hosts'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - role: 'remove_user'
+      when: exec_role == 'remove_user'
+
+- name: 'manage packages status {{ state }}'
+  hosts: '{{ machine }}'
+  become: yes
+  vars_files:
+    - host_vars/pkgs.yml
+  roles:
+    - role: 'manage_packages'
+      when: exec_role == 'manage_packages'
+
+- name: 'list packages'
+  hosts: '{{ machine }}'
+  become: yes
+  vars_files:
+    - host_vars/pkgs.yml
+  roles:
+    - role: 'list_packages'
+      when: exec_role == 'list_packages'
+
+- name: 'update all packages'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - role: 'update_all_pkgs'
+      when: exec_role == 'all_pkgs'
+
+- name: 'fetch file'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - role: 'download_file'
+      when: exec_role == 'download_file'
+
+- name: 'host facts'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - role: 'gather_facts'
+      when: exec_role == 'gather_facts'
+
+ 

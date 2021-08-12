@@ -1,0 +1,5 @@
+- name: 'local installation of ssh key'
+  hosts: '{{ machine }}'
+  roles:
+    - 'ssh_keygen'
+

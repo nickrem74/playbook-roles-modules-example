@@ -1,0 +1,15 @@
+---
+
+- name: 'remove user testuser'
+  user:
+    name: 'testuser'
+    state: absent
+    remove: yes
+    force: yes
+
+- name: 'remove sudoers testuser'
+  file:
+    path: '/etc/sudoers.d/testuser'
+    state: absent
+
+

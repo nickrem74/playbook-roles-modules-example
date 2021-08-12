@@ -1,0 +1,6 @@
+- name: 'create user on hosts'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - 'create_user'
+ 

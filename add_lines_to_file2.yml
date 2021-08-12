@@ -1,0 +1,14 @@
+- hosts: '{{ machine }}'
+  become: true
+  tasks:
+    - name: 'add line'
+      lineinfile:
+        path: '/etc/bashrc'
+        line: |
+          
+          alias ls='ls --color=auto'
+          alias ll='ls -ltr --color=auto'
+          alias la='ls -la --color=auto'
+
+    - name: 'source basrc'
+      shell: . /etc/bashrc 

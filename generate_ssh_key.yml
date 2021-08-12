@@ -1,0 +1,13 @@
+- hosts: '{{ machine }}'
+  remote_user: ansible
+  tasks:
+    - name: 'generate SSH key for user'
+      openssh_keypair:
+        path: /tmp/id_ed25519_{{ ansible_hostname}}
+        type: ed25519
+        size: 4096
+        state: present
+        force: no
+      run_once: yes
+      delegate_to: localhost
+

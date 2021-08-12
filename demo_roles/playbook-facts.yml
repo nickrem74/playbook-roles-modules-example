@@ -1,0 +1,9 @@
+---
+
+- name: 'host facts'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - 'gather_facts'
+
+ 

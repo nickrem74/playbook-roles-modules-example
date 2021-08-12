@@ -1,0 +1,9 @@
+- name: 'Setup Remote MariaDB Server'
+  hosts: '{{ machine }}'
+  become: yes
+  vars_files:
+    - host_vars/mariadb.yml
+  roles:
+    - mysql_setup
+  tags:
+    - mysql_setup

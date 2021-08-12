@@ -1,0 +1,23 @@
+- hosts: '{{ machine }}'
+  become: true
+  tasks:
+    - name: 'check if service are deployed'
+      command: systemctl is-enabled --quiet '{{ item }}'
+      register: systemd_service_enabled
+      ignore_errors: true
+      with_items:
+        - systemd-journald.service 
+        - systemd-journal-flush.service
+
+    - debug:
+        var: systemd_service_enabled 
+
+    - name: 'check if service are running'
+      command: systemctl is-active --quiet '{{ item.item }}'
+      with_items: '{{ systemd_service_enabled.results }}'
+      when: item.rc == 0
+
+    - name: '{{ state }} Service Running'
+      service: name={{ item.item }} state={{ state }}
+      with_items: '{{ systemd_service_enabled.results }}'
+      when: item.rc == 0

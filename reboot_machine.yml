@@ -1,0 +1,6 @@
+- hosts: '{{ machine }}'
+  become: true
+  tasks:
+    - name: 'reboot hosts'
+      command: '/sbin/reboot'
+

@@ -1,0 +1,6 @@
+---
+
+- name: 'list vars packages'
+  debug:
+    msg: '{{ item }}'
+  with_items: '{{ packages }}'

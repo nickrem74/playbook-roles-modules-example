@@ -1,0 +1,9 @@
+---
+
+- name: 'gather all facts'
+  setup:
+  register: _hosts_facts
+
+- name: 'display facts'
+  debug:
+    var: _hosts_facts

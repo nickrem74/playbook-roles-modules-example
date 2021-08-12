@@ -1,0 +1,7 @@
+
+- name: 'update all packages'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - 'update_all_pkgs'
+ 

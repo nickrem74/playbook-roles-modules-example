@@ -1,0 +1,9 @@
+- hosts: '{{ machine }}'
+  become: true
+  tasks:
+    - name: 'download file from host'
+      fetch:
+        src: /etc/hosts
+        dest: /tmp/hosts_{{ ansible_hostname }}.txt
+        flat: yes
+

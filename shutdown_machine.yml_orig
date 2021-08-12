@@ -1,0 +1,6 @@
+- hosts: '{{ machine }}'
+  become: true
+  tasks:
+    - name: 'shutdown hosts'
+      command: '/sbin/shutdown -h +2'
+

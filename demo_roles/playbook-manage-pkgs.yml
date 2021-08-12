@@ -1,0 +1,8 @@
+- name: 'manage packages status {{ state }}'
+  hosts: '{{ machine }}'
+  become: yes
+  vars_files:
+    - host_vars/pkgs.yml
+  roles:
+    - 'manage_packages'
+ 

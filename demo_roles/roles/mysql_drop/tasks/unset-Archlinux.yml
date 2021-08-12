@@ -1,0 +1,10 @@
+---
+- name: Ensure MySQL Python libraries are installed.
+  pacman:
+    name: mysql-python
+    state: absent
+
+- name: Ensure MySQL packages are installed.
+  pacman:
+    name: '{{ mysql_packages }}'
+    state: absent

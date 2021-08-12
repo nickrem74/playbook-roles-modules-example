@@ -1,0 +1,15 @@
+- hosts: '{{ machine }}'
+  become: true
+  tasks:
+    - name: 'list packages status {{ state }}'
+      yum:
+        name: '{{ item }}'
+        state: '{{ state }}'
+        update_cache: True
+      with_items:
+        - jq
+        - telnet
+        - tree
+        - unzip
+        - zip
+        - wget

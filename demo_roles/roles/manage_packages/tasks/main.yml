@@ -1,0 +1,10 @@
+---
+
+- name: 'list packages status {{ state }}'
+  yum:
+    name: '{{ item }}'
+    state: '{{ state }}'
+    update_cache: True
+  with_items:
+    - '{{ packages }}'
+

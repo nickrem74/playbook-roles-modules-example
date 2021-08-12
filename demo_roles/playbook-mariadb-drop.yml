@@ -1,0 +1,7 @@
+- name: 'Unset Remote MariaDB Server'
+  hosts: '{{ machine }}'
+  become: yes
+  roles:
+    - mysql_drop
+  tags:
+    - mysql_drop

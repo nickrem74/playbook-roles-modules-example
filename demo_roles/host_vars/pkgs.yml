@@ -1,0 +1,8 @@
+---
+- packages:
+    - jq
+    - telnet
+    - tree
+    - unzip
+    - zip
+    - wget
